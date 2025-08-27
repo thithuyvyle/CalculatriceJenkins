@@ -23,12 +23,18 @@ pipeline {
             steps {
                 script{
                     // Poser la question : Voulez-vous déployer ? Oui/Non
-              
-                    // Supprimer un ancien container prod s’il existe
-              
-                    // Lancer l’appli en prod (pas les tests, juste le serveur statique)
+                    def deploy = input message: 'Voulez-vous déployer en production ?', ok: 'Oui'
+                    if (deploy) {
+                        // Supprimer un ancien container prod s’il existe
+                        sh "docker rm -f ${PROD_CONTAINER_NAME} || true"
+                        // Lancer l’appli en prod (pas les tests, juste le serveur statique)
+                        sh """
+                        docker run -d --name ${PROD_CONTAINER_NAME} \
+                        -p ${PORT_PROD}:${PORT_TEST} \
+                        ${IMAGE_NAME} sh -c "npx http-server -p ${PORT_TEST}"
+                        """
+                    }
                 }
-                 
             }
         }   
     }
