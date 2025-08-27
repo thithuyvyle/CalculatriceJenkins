@@ -18,7 +18,7 @@ COPY test_calculatrice.js .
 RUN npm install selenium-webdriver http-server
 
 # Exposer le port utilisé par http-server
-EXPOSE 8003
+EXPOSE 8080
 
 # Démarrer le serveur HTTP et lancer le script de test
-CMD ["sh", "-c", "npx http-server -p 8003 & node test_calculatrice.js"]
+CMD ["sh", "-c", "npx http-server -p 8080 & node test_calculatrice.js"]
