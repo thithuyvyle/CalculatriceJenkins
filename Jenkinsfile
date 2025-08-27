@@ -14,7 +14,7 @@ pipeline {
                     // Construire l'image
                     bat "docker build --no-cache -t calculatrice:${env.BUILD_ID} ."
                     // Lancer le container → il démarre http-server + exécute test_calculatrice.js
-                    bat "docker run --rm calculatrice:${env.BUILD_ID}"
+                    bat "docker run --rm -p 8081:8003 calculatrice:${env.BUILD_ID}"
                 }   
             }
         }
