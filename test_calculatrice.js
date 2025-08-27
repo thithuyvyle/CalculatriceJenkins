@@ -20,44 +20,40 @@ options.addArguments('--headless');
         const resultat = await driver.findElement(By.id('calculate'));
 
         // --- Test 1 : Addition ---
-        await driver.findElement(By.id('number1')).sendKeys('5');
-        await driver.findElement(By.id('number2')).sendKeys('3');
-        await driver.findElement(By.id('operation')).sendKeys('Addition');
-        await driver.findElement(By.id('calculate')).click();
+        await number1.sendKeys('5');
+        await number2.sendKeys('3');
+        await operation.sendKeys('Addition');
+        await resultat.click();
 
         // Afficher les résultats
         let resultat1 = await driver.findElement(By.css('#result span')).getText();
         console.log('Résultat addition :', resultat1);
 
         // --- Test 2 : Division par zéro ---
-        await driver.findElement(By.id('number1')).clear();
-        await driver.findElement(By.id('number2')).clear();
-        await driver.findElement(By.id('number1')).sendKeys('10');
-        await driver.findElement(By.id('number2')).sendKeys('0');
-        await driver.findElement(By.id('operation')).sendKeys('Division');
-        await driver.findElement(By.id('calculate')).click();
+        await number2.clear();
+        await number2.sendKeys('0');
+        await operation.sendKeys('Division');
+        await resultat.click();
 
         // Afficher les résultats
         let resultat2 = await driver.findElement(By.css('#result span')).getText();
         console.log('Résultat division par zéro :', resultat2);
 
         // --- Test 3 : Entrée Non Valide ---
-        await driver.findElement(By.id('number1')).clear();
-        await driver.findElement(By.id('number2')).clear();
-        await driver.findElement(By.id('number1')).sendKeys('10');
-        await driver.findElement(By.id('operation')).sendKeys('Multiplication');
-        await driver.findElement(By.id('calculate')).click();
+        await number1.clear();
+        await operation.sendKeys('Multiplication');
+        await resultat.click();
         // Afficher les résultats
         let resultat3 = await driver.findElement(By.css('#result span')).getText();
         console.log('Résultat entrée non valide:', resultat3);
 
         // --- Test 4 : Vérifier la Soustraction ---
-        await driver.findElement(By.id('number1')).clear();
-        await driver.findElement(By.id('number2')).clear();
-        await driver.findElement(By.id('number1')).sendKeys('10');
-        await driver.findElement(By.id('number2')).sendKeys('5');
-        await driver.findElement(By.id('operation')).sendKeys('Soustraction');
-        await driver.findElement(By.id('calculate')).click();
+   
+        await number2.clear();
+        await number1.sendKeys('10');
+        await number2.sendKeys('5');
+        await operation.sendKeys('Soustraction');
+        await resultat.click();
 
         // Afficher les résultats
         let resultat4 = await driver.findElement(By.css('#result span')).getText();
