@@ -15,7 +15,7 @@ options.addArguments('--user-data-dir=/tmp/unique-profile');
     const driver = await new Builder().forBrowser('chrome').setChromeOptions(options).build();
 
     try {
-        await driver.get('http://localhost:8003/index.html') 
+        await driver.get('http://localhost:8081/index.html') 
 
         const number1 = await driver.findElement(By.id('number1'));
         const number2 = await driver.findElement(By.id('number2'));

@@ -28,7 +28,7 @@ pipeline {
                         // Supprimer un ancien container prod s’il existe
                         bat 'docker rm -f calculatrice-prod || true'
                         // Lancer l’appli en prod (pas les tests, juste le serveur statique)
-                         bat "docker run -d -p 8080:8003 --name calculatrice-prod calculatrice:${env.BUILD_ID} npx http-server -p 8003"
+                         bat "docker run -d -p 8081:8003 --name calculatrice-prod calculatrice:${env.BUILD_ID} npx http-server -p 8003"
                     }
                 }
             }
