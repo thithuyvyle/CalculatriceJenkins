@@ -5,6 +5,7 @@ const options = new chrome.Options();
 options.addArguments('--no-sandbox');
 options.addArguments('--disable-dev-shm-usage');
 options.addArguments('--headless'); 
+
 options.addArguments('--disable-gpu');
 options.addArguments('--remote-debugging-port=9222'); 
 options.addArguments('--user-data-dir=/tmp/unique-profile'); 
@@ -14,7 +15,7 @@ options.addArguments('--user-data-dir=/tmp/unique-profile');
     const driver = await new Builder().forBrowser('chrome').setChromeOptions(options).build();
 
     try {
-        await driver.get('http://localhost:8003')
+        await driver.get('http://localhost:8003/index.html') 
 
         const number1 = await driver.findElement(By.id('number1'));
         const number2 = await driver.findElement(By.id('number2'));
