@@ -1,6 +1,13 @@
 pipeline {
     agent any
 
+    environment {
+        IMAGE_NAME = "calculatrice"
+        PROD_CONTAINER_NAME = "calculatrice_prod"
+        PORT_TEST = "8003"
+        PORT_PROD = "8080"
+    }
+
     stages {
         stage('Cloner le code') {
             steps {
@@ -12,9 +19,9 @@ pipeline {
             steps {
                 script {
                     // Construire l'image
-                    bat "docker build -t calculatrice ."
+                    bat "docker build -t ${IMAGE_NAME} ."
                     // Lancer le container → il démarre http-server + exécute test_calculatrice.js
-                    bat "docker run -p 8003:8003 calculatrice"
+                    bat "docker run -d -p ${PORT_TEST}:${PORT_TEST} ${IMAGE_NAME}"
                 }   
             }
         }
@@ -31,7 +38,7 @@ pipeline {
                         bat """
                         docker run -d --name ${PROD_CONTAINER_NAME} \
                         -p ${PORT_PROD}:${PORT_TEST} \
-                        ${IMAGE_NAME} bat -c "npx http-server -p ${PORT_TEST}"
+                        ${IMAGE_NAME} npx http-server -p ${PORT_TEST}
                         """
                     }
                 }
