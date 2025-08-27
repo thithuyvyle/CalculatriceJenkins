@@ -6,10 +6,6 @@ options.addArguments('--no-sandbox');
 options.addArguments('--disable-dev-shm-usage');
 options.addArguments('--headless'); 
 
-options.addArguments('--disable-gpu');
-options.addArguments('--remote-debugging-port=9222'); 
-options.addArguments('--user-data-dir=/tmp/unique-profile'); 
-
 
 (async function testCalculatrice() {
     const driver = await new Builder().forBrowser('chrome').setChromeOptions(options).build();
