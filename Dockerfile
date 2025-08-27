@@ -21,4 +21,4 @@ RUN npm install selenium-webdriver http-server
 EXPOSE 8080
 
 # Démarrer le serveur HTTP et lancer le script de test
-CMD ["sh", "-c", "npx http-server -p 8080 & node test_calculatrice.js"]
+CMD ["sh", "-c", "npx http-server -p 8080 & sleep 5 && node test_calculatrice.js"]
