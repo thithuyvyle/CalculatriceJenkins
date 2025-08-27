@@ -9,10 +9,7 @@ RUN apt-get update && apt-get install -y curl gnupg \
 WORKDIR /app
 
 # Copier les fichiers
-COPY index.html .
-COPY script.js .
-COPY style.css .
-COPY test_calculatrice.js .
+COPY . .
 
 # Installer les dépendances
 RUN npm install selenium-webdriver http-server
