@@ -27,9 +27,9 @@ options.addArguments('--headless');
 
         // Afficher les résultats
         let resultat1 = await driver.findElement(By.css('#result span')).getText();
-        console.log('Résultat addition :', resultat1);
+        console.log('Résultat addition :', resultat1 === '8' ? "Réussi" : "Echoué (obtenu: ${resultat1}");
 
-        // --- Test 2 : Division par zéro ---
+        // --- Test 2 : Division par zéro --
         await number2.clear();
         await number2.sendKeys('0');
         await operation.sendKeys('Division');
@@ -37,7 +37,7 @@ options.addArguments('--headless');
 
         // Afficher les résultats
         let resultat2 = await driver.findElement(By.css('#result span')).getText();
-        console.log('Résultat division par zéro :', resultat2);
+        console.log('Résultat division par zéro :', resultat2 === 'Division par zéro impossible.' ? "Réussi" : "Echoué (obtenu: ${resultat2}");
 
         // --- Test 3 : Entrée Non Valide ---
         await number1.clear();
@@ -45,7 +45,7 @@ options.addArguments('--headless');
         await resultat.click();
         // Afficher les résultats
         let resultat3 = await driver.findElement(By.css('#result span')).getText();
-        console.log('Résultat entrée non valide:', resultat3);
+        console.log('Résultat entrée non valide:', resultat3 === 'Veuillez entrer des nombres valides.' ? "Réussi" : "Echoué (obtenu: ${resultat3}");
 
         // --- Test 4 : Vérifier la Soustraction ---
    
@@ -57,7 +57,7 @@ options.addArguments('--headless');
 
         // Afficher les résultats
         let resultat4 = await driver.findElement(By.css('#result span')).getText();
-        console.log('Résultat soustraction:', resultat4);
+        console.log('Résultat soustraction:', resultat4 === '5'? "Réussi" : "Echoué (obtenu: ${resultat4}");
 
     } finally {
         await driver.quit();
